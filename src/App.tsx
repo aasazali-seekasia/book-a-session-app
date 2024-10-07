@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Error from "./pages/Error.tsx";
 
 import HomePage from "./pages/Home.tsx";
 import SessionsPage from "./pages/Sessions.tsx";
