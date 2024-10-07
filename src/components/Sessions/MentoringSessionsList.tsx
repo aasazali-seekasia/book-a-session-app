@@ -14,7 +14,7 @@ export function MentoringSessionsList({
           <h3>{session.title}</h3>
           <p>{session.shortDescription}</p>
           <p>{session.date}</p>
-          <p>{session.durationInMinutes}</p>
+          <p>{session.durationInMinutes} minutes</p>
         </li>
       ))}
     </ul>
