@@ -15,8 +15,8 @@ const Router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-      { path: "sessions", element: <SessionsPage /> },
-      { path: "sessions/:id", element: <SessionPage /> },
+      { path: "sessions", element: <SessionsPage />, errorElement: <Error />},
+      { path: "sessions/:id", element: <SessionPage />, errorElement: <Error/>},
     ],
   },
 ]);
