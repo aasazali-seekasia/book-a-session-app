@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import Button from "../UI/Button";
+import BookedMentoringSession from "../Sessions/BookedMentoringSession";
 
 export default function NavHeader() {
   const [bookedMentoringSessionsVisible, setBookedMentoringSessionsVisible] =
@@ -16,17 +18,17 @@ export default function NavHeader() {
   return (
     <>
       {bookedMentoringSessionsVisible && (
-        <BookedMentoringSessions onClose={hideBookedMentoringSessions} />
+        <BookedMentoringSessionsList onClose={hideBookedMentoringSessions} />
       )}
 
-      <header id="nav-header">
+      <header id="nav-header" className="main-header">
         <h1>MentorMe</h1>
         <nav>
           <ul>
             <li>
               <NavLink
                 to="/"
-                className={({ isActivePage }) => (isActivePage ? "active" : "")}
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Mission
               </NavLink>
@@ -34,7 +36,7 @@ export default function NavHeader() {
             <li>
               <NavLink
                 to="/sessions"
-                className={({ isActivePage }) => (isActivePage ? "active" : "")}
+                className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Book a Mentoring Session
               </NavLink>
