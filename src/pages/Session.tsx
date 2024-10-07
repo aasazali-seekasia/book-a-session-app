@@ -12,6 +12,7 @@ export default function SessionPage() {
     return (
       <main id="session-page">
         <p>No session found!</p>
+        <Link to="/">Back to homepage?</Link>
       </main>
     );
   }
@@ -35,7 +36,7 @@ export default function SessionPage() {
             </p>
           </div>
         </header>
-        <p id="content">{loadedSession.description}</p>
+        <p id="content">{loadedSession.longDescription}</p>
       </article>
     </main>
   );
