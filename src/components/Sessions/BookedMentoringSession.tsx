@@ -29,7 +29,7 @@ export const BookedMentoringSession = ({
         </time>
         <p>{session.durationInMinutes} minutes</p>
       </div>
-      <Button isTextOnly onClick={onCancel}>
+      <Button onClick={onCancel}>
         Cancel session
       </Button>
     </article>
