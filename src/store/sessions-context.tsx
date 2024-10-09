@@ -1,6 +1,7 @@
 // Lecture 66, 67, : Creating a Context & Types
 
 import { createContext, ReactNode, useContext, useReducer } from "react";
+import BookedMentoringSession from "../components/Sessions/BookedMentoringSession";
 
 // Session type represents a mentoring session instance
 export type Session = {
@@ -9,7 +10,6 @@ export type Session = {
   shortDescription: string;
   longDescription: string;
   date: string;
-  time: string;
   visual: string;
   durationInMinutes: number;
 };
@@ -26,7 +26,7 @@ const initialState: SessionState = {
 // SessionContextValue is the context value that provides the booked mentoring sessions with actions to book and cancel a session
 interface SessionContextValue extends SessionState {
   bookMentoringSession: (session: Session) => void;
-  cancelMentoringSession: (sessionId: string) => void; // uses the session id to cancel a session
+  cancelMentoringSession: (sessionId: Session["id"]) => void; // uses the session id to cancel a session
 }
 
 // SessionContext as a component is created with Context API
@@ -57,20 +57,22 @@ function sessionReducer(
   state: SessionState,
   action: SessionActions
 ): SessionState {
+
+  const bookedMentoringSessionsState = state.bookedMentoringSessions;
   switch (action.type) {
     case "BOOK_SESSION":
-      return state.bookedMentoringSessions.some(
+      return bookedMentoringSessionsState.some(
         (session) => session.id === action.session.id
       )
         ? state
         : {
-            bookedMentoringSessions: state.bookedMentoringSessions.concat(
+            bookedMentoringSessions: bookedMentoringSessionsState.concat(
               action.session
             ),
           };
     case "CANCEL_SESSION":
       return {
-        bookedMentoringSessions: state.bookedMentoringSessions.filter(
+        bookedMentoringSessions: bookedMentoringSessionsState.filter(
           (session) => session.id !== action.sessionId
         ),
       };
@@ -87,7 +89,7 @@ export const SessionContextProvider = ({
   const [sessionState, dispatch] = useReducer(sessionReducer, initialState);
 
   const ctx: SessionContextValue = {
-    bookedMentoringSessions: [],
+    bookedMentoringSessions: sessionState.bookedMentoringSessions,
     bookMentoringSession: (session: Session) => {
       dispatch({ type: "BOOK_SESSION", session });
     },
