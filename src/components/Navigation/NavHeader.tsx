@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "../UI/Button";
-import BookedMentoringSession from "../Sessions/BookedMentoringSession";
+import BookedMentoringSessions from "../Sessions/BookedMentoringSession";
+import BookedMentoringSessionsList from "../Sessions/BookedMentoringSessionsList";
 
 export default function NavHeader() {
   const [bookedMentoringSessionsVisible, setBookedMentoringSessionsVisible] =
