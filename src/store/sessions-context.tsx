@@ -1,7 +1,6 @@
 // Lecture 66, 67, : Creating a Context & Types
 
 import { createContext, ReactNode, useContext, useReducer } from "react";
-import BookedMentoringSession from "../components/Sessions/BookedMentoringSession";
 
 // Session type represents a mentoring session instance
 export type Session = {
@@ -34,11 +33,13 @@ export const SessionContext = createContext<SessionContextValue | null>(null);
 
 // useSessionContext is a custom hook that provides the SessionContext
 export const useSessionContext = () => {
-  const sessionsCtx = useContext(SessionContext);
-  if (!sessionsCtx) {
-    throw new Error("context should not be null!");
+  const sessionsContext = useContext(SessionContext);
+  if (!sessionsContext) {
+    throw new Error(
+      "useSessionContext must be used within a SessionContextProvider"
+    );
   }
-  return sessionsCtx;
+  return sessionsContext;
 };
 
 type BookSessionAction = {
@@ -57,28 +58,27 @@ function sessionReducer(
   state: SessionState,
   action: SessionActions
 ): SessionState {
-
   const bookedMentoringSessionsState = state.bookedMentoringSessions;
-  switch (action.type) {
-    case "BOOK_SESSION":
-      return bookedMentoringSessionsState.some(
-        (session) => session.id === action.session.id
-      )
-        ? state
-        : {
-            bookedMentoringSessions: bookedMentoringSessionsState.concat(
-              action.session
-            ),
-          };
-    case "CANCEL_SESSION":
-      return {
-        bookedMentoringSessions: bookedMentoringSessionsState.filter(
-          (session) => session.id !== action.sessionId
-        ),
-      };
-    default:
-      return state;
+
+  if (action.type === "BOOK_SESSION") {
+    return bookedMentoringSessionsState.some(
+      (session) => session.id === action.session.id
+    )
+      ? state
+      : {
+          bookedMentoringSessions: bookedMentoringSessionsState.concat(
+            action.session
+          ),
+        };
   }
+  if (action.type === "CANCEL_SESSION") {
+    return {
+      bookedMentoringSessions: bookedMentoringSessionsState.filter(
+        (session) => session.id !== action.sessionId
+      ),
+    };
+  }
+  return state;
 }
 
 type SessionContextProviderProps = { children: ReactNode };
@@ -93,7 +93,7 @@ export const SessionContextProvider = ({
     bookMentoringSession: (session: Session) => {
       dispatch({ type: "BOOK_SESSION", session });
     },
-    cancelMentoringSession: (sessionId: string) => {
+    cancelMentoringSession: (sessionId: Session["id"]) => {
       dispatch({ type: "CANCEL_SESSION", sessionId });
     },
   };
