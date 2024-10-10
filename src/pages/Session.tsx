@@ -39,7 +39,11 @@ export default function SessionPage() {
       )}
       <article>
         <header>
-          <img src={loadedSession.visual} alt={loadedSession.title} />
+          <img
+            src={loadedSession.visual}
+            alt={loadedSession.title}
+            loading="lazy"
+          />
           <div>
             <h2>{loadedSession.title}</h2>
             <time dateTime={new Date(loadedSession.date).toISOString()}>
