@@ -1,7 +1,8 @@
 import { Session } from "../../store/sessions-context";
+import MentoringSession from "./MentoringSession";
 
 interface MentoringSessionsListProps {
-  sessions: Session[];
+  sessions: Array<Session>;
 }
 
 export function MentoringSessionsList({
@@ -11,10 +12,7 @@ export function MentoringSessionsList({
     <ul>
       {sessions.map((session) => (
         <li key={session.id}>
-          <h3>{session.title}</h3>
-          <p>{session.shortDescription}</p>
-          <p>{session.date}</p>
-          <p>{session.durationInMinutes} minutes</p>
+          <MentoringSession session={session} />
         </li>
       ))}
     </ul>
