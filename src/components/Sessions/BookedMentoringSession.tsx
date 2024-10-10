@@ -1,37 +1,36 @@
+import { Session } from "../../store/sessions-context";
 import Button from "../UI/Button";
 
 interface BookedMentoringSessionProps {
   session: {
-    id: string;
-    title: string;
-    description: string;
-    date: Date;
-    durationInMinutes: number;
+    id: Session["id"];
+    title: Session["title"];
+    shortDescription: Session["shortDescription"];
+    date: Session["date"];
+    durationInMinutes: Session["durationInMinutes"];
   };
   onCancel: () => void;
 }
 
 export const BookedMentoringSession = ({
-  session,
+  session : { id, title, shortDescription, date, durationInMinutes },
   onCancel,
 }: BookedMentoringSessionProps) => {
   return (
     <article>
-      <div>
-        <h4>{session.title}</h4>
-        <p>{session.description}</p>
-        <time dateTime={session.date.toString()}>
-          {session.date.toLocaleDateString("en-MY", {
-            year: "2-digit",
+      <div key={id}>
+        <h4>{title}</h4>
+        <p>{shortDescription}</p>
+        <time dateTime={date.toString()}>
+          {new Date(date).toLocaleDateString("en-US", {
+            day: "numeric",
             month: "short",
-            day: "2-digit",
+            year: "numeric",
           })}
         </time>
-        <p>{session.durationInMinutes} minutes</p>
+        <p>{durationInMinutes} minutes</p>
       </div>
-      <Button onClick={onCancel}>
-        Cancel session
-      </Button>
+      <Button onClick={onCancel}>Cancel session</Button>
     </article>
   );
 };
