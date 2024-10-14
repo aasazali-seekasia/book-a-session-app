@@ -6,7 +6,7 @@
 
 body {
   font-family: 'SEEK Sans', sans-serif;
-  background: linear-gradient(90deg, #49464f 0, #373240 100%);
+  background: linear-gradient(90deg, #e60278 0, #0e3880 100%);
 }
 
 ul {
@@ -16,7 +16,7 @@ ul {
 }
 
 .button {
-  background-color: #b68ef7;
+  background-color: #3ee0de;
   color: #0a0218;
   border: none;
   border-radius: 4px;
@@ -28,7 +28,7 @@ ul {
 
 .button:hover,
 .button:active {
-  background-color: #a16cf7;
+  background-color: #3fe6ef;
 }
 
 .button.button--text-only {
@@ -38,14 +38,14 @@ ul {
 
 .button.button--text-only:hover,
 .button.button--text-only:active {
-  color: #b592ed;
+  color: #a88ff2;
 }
 
 .modal {
   width: 90%;
   max-width: 35rem;
-  background-color: #6b5e81;
-  color: #edeaf3;
+  background-color: #0f4080;
+  color: #ededde;
   border-radius: 8px;
   border: none;
 }
@@ -104,7 +104,7 @@ ul {
 
 #main-header a {
   text-decoration: none;
-  color: #c6a8f5;
+  color: #cdcdcd;
   padding: 0.25rem 0;
   border-bottom: 2px solid transparent;
 }

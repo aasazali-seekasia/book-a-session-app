@@ -14,7 +14,7 @@ interface MentoringSessionProps {
 
 export default function MentoringSession({ session }: MentoringSessionProps) {
   return (
-    <span className="session-item">
+    <article className="session-item">
       <img src={session.visual} alt={session.title} />
       <div className="session-data">
         <div>
@@ -27,6 +27,6 @@ export default function MentoringSession({ session }: MentoringSessionProps) {
           <Button to={session.id}>Details</Button>
         </p>
       </div>
-    </span>
+    </article>
   );
 }

@@ -16,14 +16,14 @@ export default function NavHeader() {
   };
 
   return (
-    <>
+    <div>
       {bookedMentoringSessionsVisible && (
         <BookedMentoringSessionsList
           onModalClose={hideBookedMentoringSessions}
         />
       )}
 
-      <header id="nav-header">
+      <header id="main-header">
         <h1>MentorMe</h1>
         <nav>
           <ul>
@@ -41,6 +41,6 @@ export default function NavHeader() {
           </ul>
         </nav>
       </header>
-    </>
+    </div>
   );
 }
