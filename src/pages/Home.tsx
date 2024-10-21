@@ -11,7 +11,7 @@ export default function HomePage() {
         <div>
           <h3>What we do</h3>
           <p>
-            ReactMentoring is a platform for React developers to find mentors
+            MentorMe is a platform for React developers to find mentors
             who can help them with their React-related questions and problems.
             We are a community of React developers who want to help each other
             succeed.
