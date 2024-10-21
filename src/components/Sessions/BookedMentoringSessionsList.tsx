@@ -15,7 +15,7 @@ export default function BookedMentoringSessionsList({
   const sessionsContext = useSessionContext();
 
   useEffect(() => {
-    if (modal.current) modal.current?.open();
+    modal.current?.open();
   }, []);
 
   const sessions = sessionsContext.bookedMentoringSessions;
