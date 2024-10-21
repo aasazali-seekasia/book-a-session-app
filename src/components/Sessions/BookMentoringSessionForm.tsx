@@ -20,7 +20,7 @@ const BookMentoringSessionForm = forwardRef<
   const sessionsContext = useSessionContext();
 
   useEffect(() => {
-    if (modal.current) modal.current?.open();
+    modal.current?.open();
   });
 
   function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
